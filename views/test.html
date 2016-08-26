@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <div id="runtime"></div>
+    <script src="runtime.js"></script>
+    <script src="run.js"></script>
+    <script>
+      var runtimeNode=document.getElementById('runtime'),runtimeHtml=template({run:'runtest'});
+      runtimeNode.innerHTML=runtimeHtml;
+    </script>
+    <style>
+      h2{color:red}
+      .oid{color:#ff6600;}
+      .item{color:blue}
+    </style>
+  </head>
+  <body>
+    <h2>转译</h2>
+    <input type="button">
+    <input>
+    <p><script>alert('Hello world!');</script><span>hello world!</span></p>
+    <h2>if else</h2>
+    <p>wsq</p>
+    <h2>unless if反向判断</h2>
+    <p>true</p>
+    <h2>case</h2>
+    <p>Hi wsq!</p>
+    <h2>while</h2>
+    <ul>
+      <li>0</li>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+    <h2>for遍历对象的属性</h2>
+    <p>test1</p>
+    <p>test2</p>
+    <p>test3</p>
+    <h2>forEach遍历对象以键值对形式显示</h2>
+    <p>x:test1</p>
+    <p>y:test2</p>
+    <p>z:test3</p>
+    <h2>forEach遍历数组</h2>
+    <p>test1</p>
+    <p>test2</p>
+    <p>test3</p>
+    <h2>forEach嵌套循环遍历对象数组</h2>
+    <dl>
+      <dt><span class="oid">1</span></dt>
+      <dd><span class="item">a</span></dd>
+      <dd><span class="item">b</span></dd>
+      <dd><span class="item">c</span></dd>
+      <dt><span class="oid">2</span></dt>
+      <dd><span class="item">aa</span></dd>
+      <dd><span class="item">bb</span></dd>
+      <dd><span class="item">cc</span></dd>
+      <dt><span class="oid">3</span></dt>
+      <dd><span class="item">aaa</span></dd>
+      <dd><span class="item">bbb</span></dd>
+      <dd><span class="item">ccc</span></dd>
+    </dl>
+  </body>
+</html>

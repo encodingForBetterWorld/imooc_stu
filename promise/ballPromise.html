@@ -1,0 +1,71 @@
+<!doctype>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Promise Animation</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.ball{
+			width:40px;
+			height: 40px;
+			border-radius: 20px;
+		}
+		.ball1{
+			background: red;
+		}
+		.ball2{
+			background: yellow;
+		}
+		.ball3{
+			background: green;
+		}
+	</style>
+	<script src='node_modules\bluebird\js\browser\bluebird.js'></script>
+</head>
+<body>
+	<div class="ball ball1" style="margin-left: 0"></div>
+	<div class="ball ball2" style="margin-left: 0"></div>
+	<div class="ball ball3" style="margin-left: 0"></div>
+	<!--input type="button" value="开始" onclick=runAnimation()-->	
+	<script type="text/javascript">
+		var ball1=document.querySelector(".ball1")
+		var ball2=document.querySelector(".ball2")
+		var ball3=document.querySelector(".ball3")
+		function promiseAnimate(ball,dist){
+			return new Promise(function(resolve,reject){
+			function _animate(){
+				setTimeout(function(){
+					var marginLeft=parseInt(ball.style.marginLeft,10)
+					if(marginLeft===dist){
+						console.log('resolve');
+						resolve&&resolve()
+					}
+					else{
+						if(marginLeft<dist){
+							marginLeft++
+						}
+						else{
+							marginLeft--
+						}
+						ball.style.marginLeft=marginLeft
+						_animate()
+					}
+				},10)
+			}
+			_animate()
+		})
+	}
+		promiseAnimate(ball1,100).then(function(){
+			return promiseAnimate(ball2,200)
+		}).then(function(){
+			return promiseAnimate(ball3,300)
+		}).then(function(){
+			return promiseAnimate(ball2,150)
+		}).then(function(){
+			return promiseAnimate(ball3,150)
+		}).then(function(){
+			return promiseAnimate(ball1,150)
+		})
+	</script>
+</body>
+</html>

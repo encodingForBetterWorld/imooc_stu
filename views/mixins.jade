@@ -1,0 +1,46 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		style h1,h2{color:#ff6600}
+	body
+		h1 mixin
+		h2 mixin单纯调用
+		mixin simple
+			p test mixin
+		+simple
+		h2 mixin带参数
+		mixin student(name,courses)
+			p=name
+			ul(class=name)
+			each course in courses
+				li=course
+		+student("wsq",["jade","node","php"])
+		h2 mixin嵌套调用
+		mixin class(stu)
+			h4 #{stu.name}
+			+student(stu.name,stu.courses)
+		+class({name:"王苏奇",courses:["计算机","高数"]})
+		h2 mixin内联嵌套代码块的调用
+		mixin inner(param)
+			h4 #{param}
+			if block
+				block
+			else
+				p no block
+		+inner("inner")
+			p Hello World!
+		h2 mixin内联嵌套属性的调用
+		mixin attr(param)
+			p&attributes(attributes) #{param}
+		+attr("attr")(class="att_class",id="att_id")
+		h2 mixin传递可变长参数
+		mixin multi(name,...items)
+			p=name
+			ul(class=name)
+				each item in items
+					li=item
+		+multi('multipart',"nodejs","jade","php","ruby","perl","...")
+
+
+

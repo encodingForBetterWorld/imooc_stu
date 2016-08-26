@@ -1,0 +1,72 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		-var data="button",data1,html="<script>alert('Hello world!');</script><span>hello world!</span>"
+		#runtime
+		script(src='runtime.js')
+		script(src='run.js')
+		script.
+			var runtimeNode=document.getElementById('runtime'),runtimeHtml=template({run:'runtest'});
+			runtimeNode.innerHTML=runtimeHtml;
+		style.
+			h2{color:red}
+			.oid{color:#ff6600;}
+			.item{color:blue}
+	body
+		h2 转译#{course}
+		input(type='#{data}')
+		input(type=data1)
+		//- p #{html}
+		p!=html
+		h2 if else
+		-var arr=["w","s"]
+		if arr
+			if arr.length>2
+				p #{arr.join("")}
+			else if arr.length>1&&arr.push("q")
+				p #{arr.join("")}
+			else
+				p error
+		else
+			p error
+		h2 unless if反向判断
+		unless !1
+			p true
+		h2 case
+		-var name="wsq"
+		case name
+			when 'node' : p Hi node!
+			when 'jade' : p Hi jade!
+			default : p Hi #{name}!
+		h2 while
+		-var i=0
+		ul
+			while i<4
+				li=i++
+
+		h2 for遍历对象的属性
+		-var obj={x:'test1',y:'test2',z:'test3'}
+		-for(var k in obj)
+			p=obj[k]
+
+		h2 forEach遍历对象以键值对形式显示
+		each val,key in obj
+			p #{key}:#{val}
+
+		h2 forEach遍历数组
+		-var array=['test1','test2','test3']
+		each item in array
+			p=item
+
+		h2 forEach嵌套循环遍历对象数组
+		-var objs=[{id:"1",items:["a","b","c"]},{id:"2",items:["aa","bb","cc"]},{id:"3",items:["aaa","bbb","ccc"]}]
+		dl
+			each o in objs.length>0?objs:[{id:"0",items:['none']}]
+				dt
+					span.oid=o.id
+				each item in o.items
+					dd
+						span.item=item
+
+

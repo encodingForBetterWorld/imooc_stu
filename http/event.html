@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script type="text/javascript">
+	function clickIt(e){
+		window.alert('Button is clicked')
+		}
+	function appendElement(callback,type){
+		var button = document.createElement(type)
+		button.addEventListener('click',callback)
+		document.body.appendChild(button)
+		//所有能触发事件的对象都是EventEmitter的实例
+		//事件驱动:当事件被触发时调用回调函数
+	}
+	appendElement(clickIt,'BUTTON')
+	</script>
+
+</body>
+</html>
